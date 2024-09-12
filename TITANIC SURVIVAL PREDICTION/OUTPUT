@@ -1,0 +1,21 @@
+Pclass      0
+Sex         0
+Age         0
+SibSp       0
+Parch       0
+Fare        0
+Embarked    2
+dtype: int64
+Accuracy: 0.8134328358208955
+Confusion Matrix:
+[[137  20]
+ [ 30  81]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.82      0.87      0.85       157
+           1       0.80      0.73      0.76       111
+
+    accuracy                           0.81       268
+   macro avg       0.81      0.80      0.80       268
+weighted avg       0.81      0.81      0.81       268
