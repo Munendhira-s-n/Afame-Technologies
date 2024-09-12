@@ -1,0 +1,35 @@
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+df = pd.read_excel('/HR Data.xlsx')
+print("Column names in the dataset:")
+print(df.columns.tolist())
+columns_to_drop = ['unnecessary_column1', 'unnecessary_column2']  
+df.drop(columns=columns_to_drop, errors='ignore', inplace=True)
+rename_dict = {
+    'old_name1': 'new_name1',  # Replace with actual column names and new names
+    'old_name2': 'new_name2'
+}
+df.rename(columns=rename_dict, inplace=True)
+df.drop_duplicates(inplace=True)
+if 'specific_column' in df.columns:
+    df['specific_column'] = df['specific_column'].str.strip()
+else:
+    print("'specific_column' not found in the dataset.")
+if 'another_column' in df.columns:
+    df['another_column'] = df['another_column'].str.lower()
+else:
+    print("'another_column' not found in the dataset.")
+df.dropna(inplace=True)
+if 'date_column' in df.columns:
+    df['date_column'] = pd.to_datetime(df['date_column'], format='%Y-%m-%d')
+else:
+    print("'date_column' not found in the dataset.")
+numeric_columns = ['numeric_column1', 'numeric_column2'] 
+if all(col in df.columns for col in numeric_columns):
+    scaler = MinMaxScaler()
+    df[numeric_columns] = scaler.fit_transform(df[numeric_columns])
+else:
+    print("Numeric columns for normalization not found in the dataset.")
+print("\nCleaned dataset:")
+print(df.head())
+df.to_csv('cleaned_data.csv', index=False)
